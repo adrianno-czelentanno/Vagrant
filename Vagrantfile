@@ -13,11 +13,11 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "playbooks/clone_roles.yaml"
     ansible.extra_vars = {
       git_repository: "https://github.com/adrianno-czelentanno/Ansible_roles",
-      git_branch: "main"
+      git_branch: "master"
     }
   end
  
   if VAGRANT_COMMAND == "ssh"
-    config.ssh.username = 'panda'
+    config.ssh.username = 'vagrant'
   end
 end
