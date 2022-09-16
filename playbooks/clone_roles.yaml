@@ -1,0 +1,25 @@
+- name: Go, go gadget
+  connection: localhost
+  gather_facts: false
+  become: true
+  hosts: all
+
+  vars:
+    - git_repository: https://github.com/adrianno-czelentanno/Ansible_roles
+    - git_branch: main
+  
+  tasks:
+    - name: Create /etc/ansible/roles
+      file:
+        path: /etc/ansible/roles
+        state: directory
+        mode: 0775
+
+    - name: Clone Ansible_roles
+      git:
+        repo: "{{ git_repository }}"
+        dest: /etc/ansible/roles
+        single_branch: yes
+        version: master
+        clone: no
+        update: no
