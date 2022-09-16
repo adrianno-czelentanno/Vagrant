@@ -7,11 +7,12 @@
   vars:
     - git_repository: https://github.com/adrianno-czelentanno/Ansible_roles
     - git_branch: main
+    - ansible_dir: /etc/ansible/roles
   
   tasks:
-    - name: Create /etc/ansible/roles
+    - name: Create {{ ansible_dir }}
       file:
-        path: /etc/ansible/roles
+        path: "{{ ansible_dir }}"
         state: directory
         mode: 0775
 
@@ -20,6 +21,6 @@
         repo: "{{ git_repository }}"
         dest: /etc/ansible/roles
         single_branch: yes
-        version: master
+        version: "{{ git_branch }}"
         clone: no
         update: no
